@@ -1,68 +1,118 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, PropsWithChildren, SetStateAction, useState } from "react";
+import { GreenContainer, GreenSelectButton, RedContainer, RedSelectButton } from "../utils";
 
-const RadioGroup = ({
-    values,
-    selected,
-    setSelectedButton,
-    color,
-    reset,
-}: {
-    values: string[],
-    selected: string,
-    setSelectedButton: Dispatch<SetStateAction<string>>,
-    color: string,
+
+export const OptionTypeRadioPair: React.FC<PropsWithChildren<{
+    setOptionType: Dispatch<SetStateAction<string>>,
     reset: () => void,
+}>> = ({
+    setOptionType,
+    reset,
 }) => {
-    const bgLight = color === 'green' ? ' bg-green-200 ' : ' bg-red-200 ';
-    const bgDark = color === 'green' ? ' bg-green-500 ' : ' bg-red-500 ';
+        const [buySell, setBuySell] = useState('Buy');
+        const [callPut, setCallPut] = useState('Call');
 
-    const textDark = color === 'green' ? ' text-green-500 ' : ' text-red-500 ';
+        setOptionType([buySell, callPut].join(' '));
 
-    return (
-        <div className={bgLight + 'rounded-xl w-fit h-fit p-2 mr-8 flex justify-around'}>
-            {values.map((value) => {
-                return (
-                    <button
-                        key={value}
-                        disabled={value === selected}
-                        className={
-                            'min-w-[3.75rem] min-h-[2.25rem] rounded-xl ' + (
-                                value !== selected ?
-                                    bgLight + textDark :
-                                    bgDark + 'text-white'
-                            )
-                        }
-                        onClick={(e) => {
-                            setSelectedButton(value)
-                            reset()
-                        }}
-                    >
-                        {value}
-                    </button>
-                );
-            })}
-        </div>
-    );
-};
+        const useGreen = (buySell === 'Buy') === (callPut === 'Call');
 
-export const RadioPair = ({
-    setOptionTransactionType,
-    color,
-    setSelected,
-}: {
-    setOptionTransactionType: Dispatch<SetStateAction<string>>,
-    color: string,
-    setSelected: Dispatch<SetStateAction<number | undefined>>,
-}) => {
-    const [buySell, setBuySell] = useState('Buy');
-    const [callPut, setCallPut] = useState('Call');
-
-    setOptionTransactionType(buySell + ' ' + callPut)
-
-    return (
-        <div className='h-fit flex justify-between'>
-            <RadioGroup values={['Buy', 'Sell']} selected={buySell} setSelectedButton={setBuySell} color={color} reset={() => setSelected(undefined)} />
-            <RadioGroup values={['Call', 'Put']} selected={callPut} setSelectedButton={setCallPut} color={color} reset={() => setSelected(undefined)} />
-        </div>
-    );
-};
+        return (
+            <div className='h-fit flex justify-between'>
+                {
+                    useGreen ?
+                        <>
+                            <GreenContainer className='mr-8'>
+                                <GreenSelectButton
+                                    className={'min-w-[3.75rem] min-h-[2.25rem]'}
+                                    selected={buySell === 'Buy'}
+                                    onClick={() => {
+                                        setBuySell('Buy')
+                                        reset()
+                                    }}
+                                >
+                                    Buy
+                                </GreenSelectButton>
+                                <GreenSelectButton
+                                    className={'min-w-[3.75rem] min-h-[2.25rem]'}
+                                    selected={buySell === 'Sell'}
+                                    onClick={() => {
+                                        setBuySell('Sell')
+                                        reset()
+                                    }}
+                                >
+                                    Sell
+                                </GreenSelectButton>
+                            </GreenContainer>
+                            <GreenContainer className='mr-8'>
+                                <GreenSelectButton
+                                    className={'min-w-[3.75rem] min-h-[2.25rem]'}
+                                    selected={callPut === 'Call'}
+                                    onClick={() => {
+                                        setCallPut('Call')
+                                        reset()
+                                    }}
+                                >
+                                    Call
+                                </GreenSelectButton>
+                                <GreenSelectButton
+                                    className={'min-w-[3.75rem] min-h-[2.25rem]'}
+                                    selected={callPut === 'Put'}
+                                    onClick={() => {
+                                        setCallPut('Put')
+                                        reset()
+                                    }}
+                                >
+                                    Put
+                                </GreenSelectButton>
+                            </GreenContainer>
+                        </> :
+                        <>
+                            <RedContainer className='mr-8'>
+                                <RedSelectButton
+                                    className={'min-w-[3.75rem] min-h-[2.25rem]'}
+                                    selected={buySell === 'Buy'}
+                                    onClick={() => {
+                                        setBuySell('Buy')
+                                        reset()
+                                    }}
+                                >
+                                    Buy
+                                </RedSelectButton>
+                                <RedSelectButton
+                                    className={'min-w-[3.75rem] min-h-[2.25rem]'}
+                                    selected={buySell === 'Sell'}
+                                    onClick={() => {
+                                        setBuySell('Sell')
+                                        reset()
+                                    }}
+                                >
+                                    Sell
+                                </RedSelectButton>
+                            </RedContainer>
+                            <RedContainer className='mr-8'>
+                                <RedSelectButton
+                                    className={'min-w-[3.75rem] min-h-[2.25rem]'}
+                                    selected={callPut === 'Call'}
+                                    onClick={() => {
+                                        setCallPut('Call')
+                                        reset()
+                                    }}
+                                >
+                                    Call
+                                </RedSelectButton>
+                                <RedSelectButton
+                                    className={'min-w-[3.75rem] min-h-[2.25rem]'}
+                                    selected={callPut === 'Put'}
+                                    onClick={() => {
+                                        setCallPut('Put')
+                                        reset()
+                                    }}
+                                >
+                                    Put
+                                </RedSelectButton>
+                            </RedContainer>
+                        </>
+                }
+            </div>
+        )
+    }
