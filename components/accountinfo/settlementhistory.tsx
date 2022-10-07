@@ -1,23 +1,5 @@
 import React from 'react';
-
-
-// TODO replace this with a backend call
-const getAccountSettlementHistory = (walletAddress: string | null | undefined) => {
-    return [
-        {
-            priceAtSettlement: 2,
-            settlementTimestamp: new Date(Date.now()).toDateString(),
-        },
-        {
-            priceAtSettlement: 2,
-            settlementTimestamp: new Date(Date.now()).toDateString(),
-        },
-        {
-            priceAtSettlement: 2,
-            settlementTimestamp: new Date(Date.now()).toDateString(),
-        },
-    ]
-}
+import { getAccountSettlementHistory } from '../backend_calls';
 
 
 export const AccountSettlementHistory: React.FC<{
@@ -28,8 +10,8 @@ export const AccountSettlementHistory: React.FC<{
         const accountSettlementHistory = getAccountSettlementHistory(walletAddress);
 
         return (
-            <div className="w-full flex flex-wrap justify-start text-sm">
-                <div className="flex justify-between items-center content-center text-center w-full text-gray-500">
+            <div className="w-full flex flex-wrap justify-start text-sm drop-shadow">
+                <div className="flex justify-between items-center content-center text-center w-full text-slate-500">
                     <span className="basis-full">Asset</span>
                     <span className="basis-full">Price at Settlement</span>
                     <span className="basis-full">Settlement Timestamp</span>
@@ -37,7 +19,7 @@ export const AccountSettlementHistory: React.FC<{
                 {accountSettlementHistory.map((entry, idx) => {
                     return (
                         <div key={idx} className='flex justify-between items-center w-full rounded-xl bg-white h-12 mt-2'>
-                            <div className="flex justify-between items-center content-center w-full font-bold text-center text-gray-500">
+                            <div className="flex justify-between items-center content-center w-full font-bold text-center text-slate-500">
                                 <span className="basis-full">ETH</span>
                                 <span className="basis-full">{entry.priceAtSettlement}</span>
                                 <span className="basis-full">{entry.settlementTimestamp}</span>

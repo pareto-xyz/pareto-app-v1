@@ -10,13 +10,7 @@ import { useWeb3React } from "@web3-react/core";
 import { Injected, SetWalletContext, WalletContext } from "../wallet";
 
 import { DepositWithdrawModal } from '../modal/depositwithdraw';
-
-
-
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
-
+import { classNames } from "../utils";
 
 
 const MarginAccountDropdown: React.FC<{
@@ -110,32 +104,32 @@ export const ParetoContainer: React.FC<PropsWithChildren<{}>> = ({ children }) =
                 </div>
                 <div className='h-full w-1/2 flex justify-around items-center'>
                     <Link href='/trade'>
-                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900'>
+                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-900'>
                             Trade
                         </a>
                     </Link>
                     <Link href='/account'>
-                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900'>
+                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-900'>
                             Account
                         </a>
                     </Link>
                     <Link href='/position_builder'>
-                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900'>
+                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-900'>
                             Position Builder
                         </a>
                     </Link>
                     <Link href='/competitions'>
-                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900'>
+                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-900'>
                             Competitions
                         </a>
                     </Link>
                     <Link href='/help'>
-                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900'>
+                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-900'>
                             Help
                         </a>
                     </Link>
                     <Link href='/feedback'>
-                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900'>
+                        <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-900'>
                             Feedback
                         </a>
                     </Link>

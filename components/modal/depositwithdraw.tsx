@@ -3,12 +3,9 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import { ParetoModal } from ".";
 import { GreenContainer, GreenSelectButton } from "../utils";
 import { WalletContext } from "../wallet";
+import { getBalance } from "../backend_calls";
 
 
-// TODO replace this with a call to the backend
-const getBalance = (walletAddress: string | null | undefined) => {
-    return walletAddress === null || walletAddress === undefined ? 100.00 : 10000.00;
-}
 
 const DepositRadio: React.FC<{
     state: string,
@@ -108,7 +105,7 @@ export const DepositWithdrawModal: React.FC<{
 
                     <div className='w-full h-4' />
 
-                    <div className='w-11/12 text-slate-500 text-md mb-2'>
+                    <div className='w-11/12 text-slate-500 text-base mb-2'>
                         Enter {depositWithdraw} Amount (USDC)
                     </div>
                     <div className='w-full flex justify-start items-center'>
@@ -117,7 +114,7 @@ export const DepositWithdrawModal: React.FC<{
                             value={amount}
                             onChange={(e) => {
                                 const amount = e.target.value;
-                                if (/[0-9]+(\.[0-9]+)?/.test(amount)) {
+                                if (amount === '' || /^[0-9]+(\.[0-9]*)?$/.test(amount)) {
                                     setAmount(e.target.value)
                                 }
                             }}
@@ -128,7 +125,7 @@ export const DepositWithdrawModal: React.FC<{
                                 {
                                     walletAddress => (
                                         <span
-                                            className='text-slate-500 text-md'
+                                            className='text-slate-500 text-base underline underline-offset-2'
                                             onClick={() => {
                                                 setAmount(getBalance(walletAddress).toString())
                                             }}>

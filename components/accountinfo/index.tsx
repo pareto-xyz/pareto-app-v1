@@ -14,7 +14,7 @@ export const AccountInfo: React.FC<{
 
         return (
             <div>
-                <div className="positions w-full h-16 mt-12">
+                <div className="positions w-full my-12">
                     <div className="box border-2 border-green-500 px-8 rounded-xl py-8">
                         <div className="w-full">
                             <h1 className="text-2xl font-bold text-left mb-4">Eth Margin Account Positions</h1>

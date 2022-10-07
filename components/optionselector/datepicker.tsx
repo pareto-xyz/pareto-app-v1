@@ -1,21 +1,10 @@
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Fragment, useState } from 'react'
+import { getDates } from '../backend_calls';
+import { classNames } from '../utils';
 
 
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
-
-// TODO replace this with a call to the backend
-const getDates = () => {
-    return [
-        { id: 1, name: 'Friday 16 Sept, 8am', unavailable: false },
-        { id: 2, name: 'Monday 19 Sept, 8am', unavailable: false },
-        { id: 3, name: 'Friday 23 Sept, 8am', unavailable: false },
-        { id: 4, name: 'Monday 26 Sept, 8am', unavailable: false },
-    ]
-};
 
 export const DatePicker = () => {
     const dates = getDates();
@@ -25,11 +14,11 @@ export const DatePicker = () => {
         <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (
                 <>
-                    <div className="relative mt-1 h-[3rem]">
+                    <div className="relative mt-1 h-[3rem] drop-shadow">
                         <Listbox.Button className="relative w-full h-[3rem] cursor-default rounded-xl border border-slate-100 bg-slate-100 py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                             <span className="block truncate">Expires {selected.name}</span>
                             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                <ChevronDownIcon className="h-5 w-5 text-slate-400" aria-hidden="true" />
                             </span>
                         </Listbox.Button>
 
@@ -41,21 +30,21 @@ export const DatePicker = () => {
                             leaveTo="opacity-0"
                         >
                             <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {dates.map((person) => (
+                                {dates.map((date) => (
                                     <Listbox.Option
-                                        key={person.id}
+                                        key={date.id}
                                         className={({ active }) =>
                                             classNames(
-                                                active ? 'text-white bg-indigo-500' : 'text-gray-900',
+                                                active ? 'text-white bg-indigo-500' : 'text-slate-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                             )
                                         }
-                                        value={person}
+                                        value={date}
                                     >
                                         {({ selected, active }) => (
                                             <>
                                                 <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                                                    {person.name}
+                                                    {date.name}
                                                 </span>
 
                                                 {selected ? (

@@ -1,20 +1,9 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useState } from "react"
+import { Tooltip } from '@mui/material';
 import { DepositWithdrawModal } from "../modal/depositwithdraw";
-import { Injected, SetWalletContext, WalletContext } from "../wallet";
-
-
-// TODO replace this with a call to the backend
-const getAccountInfo = (walletAddress: string | undefined | null) => {
-    return {
-        availableBalance: 1,
-        unrealizedPNL: 2,
-        totalMaintenenceMargin: 3,
-        totalInitialMargin: 4,
-        liquidationBuffer: 5,
-        totalMarginAccountBalance: 6,
-    };
-};
+import { Injected, SetWalletContext } from "../wallet";
+import { getAccountInfo } from "../backend_calls";
 
 
 export const AccountView: React.FC<{
@@ -31,7 +20,7 @@ export const AccountView: React.FC<{
         return (
             <SetWalletContext.Consumer>
                 {setWalletAddress => (
-                    <div className='w-full h-auto min-h-min max-w-sm flex justify-center text-slate-500 rounded-xl bg-white p-8 m-4 flex-wrap'>
+                    <div className='w-full h-auto min-h-min max-w-sm flex justify-center text-slate-500 rounded-xl bg-white p-8 m-4 flex-wrap drop-shadow'>
                         {
                             walletAddress === undefined || walletAddress === null ?
                                 (
@@ -70,58 +59,70 @@ export const AccountView: React.FC<{
                                             <h3 className='text-2xl text-black font-bold'>Your Account</h3>
                                         </div >
                                         <br />
-                                        <div className='flex justify-between items-center w-full'>
-                                            <p className=''>
-                                                Available<br />
-                                                Balance
-                                            </p>
+                                        <div className='flex justify-between items-center w-full text-sm'>
+                                            <Tooltip title='The best available price to buy or sell this option, right now.' placement='top' arrow>
+                                                <p className='Available balance is the margin account balance available to open new orders. It is Account Balance + min(0, Unrealized PnL) - Initial Margin.'>
+                                                    Available<br />
+                                                    Balance
+                                                </p>
+                                            </Tooltip>
                                             <div className='border-t grow mx-4'></div>
-                                            <p className='font-bold'>${accountInfo.availableBalance}</p>
+                                            <p className='font-bold text-base'>${accountInfo.availableBalance}</p>
                                         </div>
                                         <hr className='h-4 invisible' />
-                                        <div className='flex justify-between items-center w-full'>
-                                            <p className=''>
-                                                Unrealized<br />
-                                                PnL
-                                            </p>
+                                        <div className='flex justify-between items-center w-full text-sm'>
+                                            <Tooltip title='Unrealized PnL is the total profit and loss from unrealized positions across your portfolio, based on current mark prices.' placement='top' arrow>
+                                                <p className=''>
+                                                    Unrealized<br />
+                                                    PnL
+                                                </p>
+                                            </Tooltip>
                                             <div className='border-t grow mx-4'></div>
-                                            <p className='font-bold'>${accountInfo.unrealizedPNL}</p>
+                                            <p className='font-bold text-base'>${accountInfo.unrealizedPNL}</p>
                                         </div>
                                         <hr className='h-4 invisible' />
-                                        <div className='flex justify-between items-center w-full'>
-                                            <p className=''>
-                                                Total Maintenence<br />
-                                                Margin
-                                            </p>
+                                        <div className='flex justify-between items-center w-full text-sm'>
+                                            <Tooltip title='Maintenance Margin is the total amount of capital you need in your account to avoid liquidation.' placement='top' arrow>
+                                                <p className=''>
+                                                    Total Maintenence<br />
+                                                    Margin
+                                                </p>
+                                            </Tooltip>
                                             <div className='border-t grow mx-4'></div>
-                                            <p className='font-bold'>${accountInfo.totalMaintenenceMargin}</p>
+                                            <p className='font-bold text-base'>${accountInfo.totalMaintenenceMargin}</p>
                                         </div>
                                         <hr className='h-4 invisible' />
-                                        <div className='flex justify-between items-center w-full'>
-                                            <p className=''>
-                                                Total Initial<br />
-                                                Margin
-                                            </p>
+                                        <div className='flex justify-between items-center w-full text-sm'>
+                                            <Tooltip title='Initial Margin is the amount of capital required in your Margin Account to open new orders and positions.' placement='top' arrow>
+                                                <p className=''>
+                                                    Total Initial<br />
+                                                    Margin
+                                                </p>
+                                            </Tooltip>
                                             <div className='border-t grow mx-4'></div>
-                                            <p className='font-bold'>${accountInfo.totalInitialMargin}</p>
+                                            <p className='font-bold text-base'>${accountInfo.totalInitialMargin}</p>
                                         </div>
                                         <hr className='h-4 invisible' />
-                                        <div className='flex justify-between items-center w-full'>
-                                            <p className=''>
-                                                Liquidation<br />
-                                                Buffer
-                                            </p>
+                                        <div className='flex justify-between items-center w-full text-sm'>
+                                            <Tooltip title='Liquidation Buffer is the amount of capital protecting you from being liquidated. When this hits 0, your account can be liquidated.' placement='top' arrow>
+                                                <p className=''>
+                                                    Liquidation<br />
+                                                    Buffer
+                                                </p>
+                                            </Tooltip>
                                             <div className='border-t grow mx-4'></div>
-                                            <p className='font-bold'>${accountInfo.liquidationBuffer}</p>
+                                            <p className='font-bold text-base'>${accountInfo.liquidationBuffer}</p>
                                         </div>
                                         <hr className='h-4 invisible' />
-                                        <div className='flex justify-between items-center w-full'>
-                                            <p className=''>
-                                                Total Margin<br />
-                                                Account Balance
-                                            </p>
+                                        <div className='flex justify-between items-center w-full text-sm'>
+                                            <Tooltip title='Margin Account balance is the amount of USDC in your account, right now.' placement='top' arrow>
+                                                <p className=''>
+                                                    Total Margin<br />
+                                                    Account Balance
+                                                </p>
+                                            </Tooltip>
                                             <div className='border-t grow mx-4'></div>
-                                            <p className='font-bold'>${accountInfo.totalMarginAccountBalance}</p>
+                                            <p className='font-bold text-base'>${accountInfo.totalMarginAccountBalance}</p>
                                         </div>
 
                                         <hr className='h-6 invisible' />

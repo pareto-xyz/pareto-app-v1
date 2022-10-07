@@ -1,29 +1,20 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { DatePicker } from "./datepicker";
 import { OptionTypeRadioPair } from "./radio";
 import { OptionInfo } from "./optioninfo";
+import { getStrikePrices } from "../backend_calls";
 
-
-// TODO fill this in with a backend call
-const getOptionPrices = (optionType: string | null) => {
-    return [
-        '180',
-        '120',
-        '80',
-        '60',
-    ]
-};
 
 export const OptionSelector: React.FC<{
     optionType: string,
     setOptionType: Dispatch<SetStateAction<string>>,
-    selectedPrice: string | null,
-    setSelectedPrice: Dispatch<SetStateAction<string | null>>,
+    selectedStrikePrice: number | null,
+    setSelectedStrikePrice: Dispatch<SetStateAction<number | null>>,
 }> = ({
     optionType,
     setOptionType,
-    selectedPrice,
-    setSelectedPrice,
+    selectedStrikePrice,
+    setSelectedStrikePrice,
 }) => {
 
         return (
@@ -31,7 +22,7 @@ export const OptionSelector: React.FC<{
                 <div className="col-span-8 flex flex-2 flex-col rounded-2xl flex-wrap">
                     <div className='w-full flex justify-between p-2 px-8'>
                         <OptionTypeRadioPair setOptionType={setOptionType} reset={() => {
-                            setSelectedPrice(null);
+                            setSelectedStrikePrice(null);
                         }} />
                         <DatePicker />
                     </div>
@@ -40,21 +31,21 @@ export const OptionSelector: React.FC<{
 
                     <div className="w-full">
                         <div className='w-full flex justify-around items-center h-12 px-6 text-slate-500'>
-                            <div className="flex justify-around items-center w-5/6">
-                                <div className='flex justify-center items-center'>Strike Price</div>
-                                <div className='flex justify-center items-center'>Break Even Price</div>
-                                <div className='flex justify-center items-center'>Implied Volitility</div>
+                            <div className="flex justify-around items-center w-5/6 text-sm">
+                                <div className='flex justify-center items-center w-1/3'>Strike Price</div>
+                                <div className='flex justify-center items-center w-1/3'>Break Even Price</div>
+                                <div className='flex justify-center items-center w-1/3'>Implied Volitility</div>
                             </div>
                             <div className='flex justify-center items-center w-1/6'>Price</div>
                         </div>
-                        {getOptionPrices(optionType).map((price, idx) => {
+                        {getStrikePrices(optionType).map((price, idx) => {
                             return (
                                 <div key={idx}>
                                     <OptionInfo
                                         optionType={optionType}
-                                        optionPrice={price}
-                                        selectedPrice={selectedPrice}
-                                        setSelectedPrice={setSelectedPrice}
+                                        strikePrice={price}
+                                        selectedStrikePrice={selectedStrikePrice}
+                                        setSelectedStrikePrice={setSelectedStrikePrice}
                                     />
                                     <br />
                                 </div>

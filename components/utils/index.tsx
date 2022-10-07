@@ -13,7 +13,7 @@ export const RedContainer: React.FC<PropsWithChildren<{
 
     children,
 }) => {
-        return <div className={'bg-red-200 rounded-xl w-fit h-fit p-2 flex justify-around ' + className}>
+        return <div className={'drop-shadow bg-red-200 rounded-xl w-fit h-fit p-2 flex justify-around ' + className}>
             {children}
         </div >
     }
@@ -25,7 +25,7 @@ export const GreenContainer: React.FC<PropsWithChildren<{
 
     children,
 }) => {
-        return <div className={'bg-green-200 rounded-xl w-fit h-fit p-2 flex justify-around ' + className}>
+        return <div className={'drop-shadow bg-green-200 rounded-xl w-fit h-fit p-2 flex justify-around ' + className}>
             {children}
         </div>
     }

@@ -1,43 +1,7 @@
 import React, { useState } from 'react';
 import { ClosePositionModal } from '../modal/closeposition';
 import { classNames } from '../utils';
-
-
-// TODO replace this with a backend call
-const getAccountPositions = (walletAddress: string | null | undefined) => {
-    return [
-        {
-            contractType: 'Call',
-            side: 'Short',
-            strike: 2,
-            expiry: new Date(Date.now()).toDateString(),
-            quantity: 4,
-            entryPrice: 5,
-            currentPrice: 6,
-            unrealizedPnL: 7,
-        },
-        {
-            contractType: 'Call',
-            side: 'Long',
-            strike: 2,
-            expiry: new Date(Date.now()).toDateString(),
-            quantity: 4,
-            entryPrice: 5,
-            currentPrice: 6,
-            unrealizedPnL: 7,
-        },
-        {
-            contractType: 'Call',
-            side: 'Short',
-            strike: 2,
-            expiry: new Date(Date.now()).toDateString(),
-            quantity: 4,
-            entryPrice: 5,
-            currentPrice: 6,
-            unrealizedPnL: 7,
-        },
-    ]
-}
+import { getAccountPositions } from '../backend_calls';
 
 
 export const AccountPositions: React.FC<{
@@ -53,7 +17,7 @@ export const AccountPositions: React.FC<{
         return (
             <div className="w-full flex flex-wrap justify-start text-sm">
                 <ClosePositionModal open={modalOpen} setOpen={setModalOpen} positionIndex={positionIndex} walletAddress={walletAddress} />
-                <div className="flex justify-between items-center content-center text-center w-5/6 text-gray-500">
+                <div className="flex justify-between items-center content-center text-center w-5/6 text-slate-500">
                     <span className="basis-full">Type</span>
                     <span className="basis-full">Side</span>
                     <span className="basis-full">Strike</span>
@@ -65,8 +29,8 @@ export const AccountPositions: React.FC<{
                 </div>
                 {accountPositions.map((entry, idx) => {
                     return (
-                        <div key={idx} className='flex justify-between items-center w-full rounded-xl bg-white h-12 mt-2'>
-                            <div className="flex justify-between items-center content-center w-5/6 font-bold text-center text-gray-500">
+                        <div key={idx} className='flex justify-between items-center w-full rounded-xl bg-white h-12 mt-2 drop-shadow'>
+                            <div className="flex justify-between items-center content-center w-5/6 font-bold text-center text-slate-500">
                                 <span className="basis-full">{entry.contractType}</span>
                                 <span className={
                                     classNames(
