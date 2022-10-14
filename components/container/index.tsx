@@ -37,7 +37,7 @@ const MarginAccountDropdown: React.FC<{
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Listbox.Options className="absolute z-10 mt-1 max-h-60 overflow-auto rounded-xl bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        <Listbox.Options className="z-10 mt-1 max-h-60 overflow-auto rounded-xl bg-white py-1 text-base drop-shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             <Listbox.Option
                                 className={({ active }) =>
                                     classNames(
@@ -56,7 +56,7 @@ const MarginAccountDropdown: React.FC<{
                             <Listbox.Option
                                 className={({ active }) =>
                                     classNames(
-                                        active ? 'text-black bg-green-200' : 'bg-white',
+                                        active ? 'text-black bg-red-200' : 'bg-white',
                                         'relative cursor-default select-none py-2 pl-3 pr-9'
                                     )
                                 }
@@ -89,8 +89,8 @@ export const ParetoContainer: React.FC<PropsWithChildren<{}>> = ({ children }) =
 
     return (
         <>
-            <div className='w-full h-24 flex justify-around items-center'>
-                <div className='h-full w-1/5 relative'>
+            <div className='w-full h-24 flex flex-wrap md:flex-nowrap justify-around items-center'>
+                <div className='h-full w-full md:w-1/5 relative'>
                     <Link href='/'>
                         <a href="#">
                             <Image
@@ -102,7 +102,7 @@ export const ParetoContainer: React.FC<PropsWithChildren<{}>> = ({ children }) =
                         </a>
                     </Link>
                 </div>
-                <div className='h-full w-1/2 flex justify-around items-center'>
+                <div className='md:h-full w-full md:w-1/2 flex-grow md:flex-grow-0 flex justify-around items-center'>
                     <Link href='/trade'>
                         <a href="#" className='hover:underline underline-offset-4 decoration-slate-500 inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-900'>
                             Trade
@@ -136,7 +136,7 @@ export const ParetoContainer: React.FC<PropsWithChildren<{}>> = ({ children }) =
                 </div>
                 {
                     !active ?
-                        <div>
+                        <div className='hidden md:inline-block'>
                             <button
                                 className='w-40 h-8 rounded-xl bg-green-200 text-green-900 font-bold text-sm'
                                 onClick={() => {
@@ -147,7 +147,7 @@ export const ParetoContainer: React.FC<PropsWithChildren<{}>> = ({ children }) =
                                 Connect Wallet
                             </button>
                         </div> :
-                        <div className='h-full flex justify-around items-center w-1/5'>
+                        <div className='h-full md:flex justify-around items-center w-1/5 hidden'>
                             <MarginAccountDropdown setModalOpen={setModalOpen} setModalInitial={setModalInitial} />
                             <DepositWithdrawModal open={modalOpen} setOpen={setModalOpen} defaultValue={modalInitial} />
                             <div className='text-green-500 flex justify-center items-center'>
@@ -172,10 +172,9 @@ export const ParetoContainer: React.FC<PropsWithChildren<{}>> = ({ children }) =
                                 }
                             </div>
                         </div>
-
                 }
             </div>
-            <div className='w-full min-h-screen flex flex-wrap justify-center items-start'>
+            <div className='md:w-full w-screen min-h-screen flex flex-wrap justify-center items-start'>
                 <WalletContext.Provider value={walletAddress}>
                     <SetWalletContext.Provider value={setWalletAddress}>
                         {children}

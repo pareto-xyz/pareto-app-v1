@@ -24,11 +24,11 @@ const getAccountInfo = (walletAddress: string | null | undefined) => {
 const Home: NextPage = () => {
     return (
         <ParetoContainer>
-            <div className="w-full pl-24 mt-12">
+            <div className="w-full md:pl-24 pl-4 mt-12">
                 <h1 className="text-2xl font-bold text-left">Account</h1>
             </div>
-            <div className="flex justify-start items-start flex-wrap mt-2 px-16 min-h-fit max-w-full w-[1536px]">
-                <div className="flex flex-row items-center text-center w-full text-slate-500">
+            <div className="flex md:justify-start justify-around items-start flex-wrap mt-2 md:px-16 px-4 min-h-fit w-full md:max-w-full md:w-[1536px]">
+                <div className="flex md:flex-row flex-col items-start md:items-center text-center md:w-full w-1/2 text-slate-500">
                     <p className="basis-full">Asset</p>
                     <Tooltip title='Account Equity is Margin Account Balance + Unrealized PnL.' placement='top' arrow>
                         <p className="basis-full">Account Equity</p>
@@ -49,7 +49,7 @@ const Home: NextPage = () => {
                         <p className="basis-full">Liquidation Buffer</p>
                     </Tooltip>
                 </div>
-                <div className="flex flex-row items-center w-full font-bold justify-between drop-shadow rounded-xl py-4 text-center mt-8 text-slate-500 bg-white">
+                <div className="flex md:flex-row flex-col items-center md:w-full w-1/3 font-bold justify-between drop-shadow rounded-xl md:py-4 text-center md:mt-8 text-slate-500 bg-white">
                     <div className="basis-full">
                         {/* <svg className="inline" width="35" height="32" viewBox="0 0 35 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.506348" width="33.9097" height="32" rx="12" fill="url(#paint0_linear_1_850)" />

@@ -13,26 +13,24 @@ export const AccountInfo: React.FC<{
         const [selectedInfo, setSelectedInfo] = useState('Positions')
 
         return (
-            <div>
-                <div className="positions w-full my-12">
-                    <div className="box border-2 border-green-500 px-8 rounded-xl py-8">
-                        <div className="w-full">
-                            <h1 className="text-2xl font-bold text-left mb-4">Eth Margin Account Positions</h1>
-                            <PositionsRadio selected={selectedInfo} setSelected={setSelectedInfo} />
-                            <br />
-                            {
-                                selectedInfo === 'Positions' &&
-                                <AccountPositions walletAddress={walletAddress} />
-                            }
-                            {
-                                selectedInfo === 'Trade History' &&
-                                <AccountTradeHistory walletAddress={walletAddress} />
-                            }
-                            {
-                                selectedInfo === 'Settlement History' &&
-                                <AccountSettlementHistory walletAddress={walletAddress} />
-                            }
-                        </div>
+            <div className="positions w-full min-w-fit my-12">
+                <div className="box border-2 border-green-500 md:px-8 px-1 rounded-xl py-8">
+                    <div className="w-full">
+                        <h1 className="text-2xl font-bold text-left mb-4">Eth Margin Account Positions</h1>
+                        <PositionsRadio selected={selectedInfo} setSelected={setSelectedInfo} />
+                        <br />
+                        {
+                            selectedInfo === 'Positions' &&
+                            <AccountPositions walletAddress={walletAddress} />
+                        }
+                        {
+                            selectedInfo === 'Trade History' &&
+                            <AccountTradeHistory walletAddress={walletAddress} />
+                        }
+                        {
+                            selectedInfo === 'Settlement History' &&
+                            <AccountSettlementHistory walletAddress={walletAddress} />
+                        }
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { ParetoModal } from ".";
-import { GreenContainer, GreenSelectButton } from "../utils";
+import { classNames, GreenContainer, GreenSelectButton, RedContainer, RedSelectButton } from "../utils";
 import { WalletContext } from "../wallet";
 import { getBalance } from "../backend_calls";
 
@@ -15,26 +15,47 @@ const DepositRadio: React.FC<{
     setState,
 }) => {
         return (
-            <GreenContainer className={''}>
-                <GreenSelectButton
-                    selected={state === 'Deposit'}
-                    className='min-w-[7rem] min-h-[2.25rem]'
-                    onClick={() => {
-                        setState('Deposit')
-                    }}
-                >
-                    Deposit
-                </GreenSelectButton>
-                <GreenSelectButton
-                    selected={state === 'Withdraw'}
-                    className='min-w-[7rem] min-h-[2.25rem]'
-                    onClick={() => {
-                        setState('Withdraw')
-                    }}
-                >
-                    Withdraw
-                </GreenSelectButton>
-            </GreenContainer>
+            state === 'Deposit' ?
+                <GreenContainer className={''}>
+                    <GreenSelectButton
+                        selected={true}
+                        className='min-w-[7rem] min-h-[2.25rem]'
+                        onClick={() => {
+                            setState('Deposit')
+                        }}
+                    >
+                        Deposit
+                    </GreenSelectButton>
+                    <GreenSelectButton
+                        selected={false}
+                        className='min-w-[7rem] min-h-[2.25rem]'
+                        onClick={() => {
+                            setState('Withdraw')
+                        }}
+                    >
+                        Withdraw
+                    </GreenSelectButton>
+                </GreenContainer> :
+                <RedContainer className={''}>
+                    <RedSelectButton
+                        selected={false}
+                        className='min-w-[7rem] min-h-[2.25rem]'
+                        onClick={() => {
+                            setState('Deposit')
+                        }}
+                    >
+                        Deposit
+                    </RedSelectButton>
+                    <RedSelectButton
+                        selected={true}
+                        className='min-w-[7rem] min-h-[2.25rem]'
+                        onClick={() => {
+                            setState('Withdraw')
+                        }}
+                    >
+                        Withdraw
+                    </RedSelectButton>
+                </RedContainer>
         )
     }
 
@@ -140,12 +161,15 @@ export const DepositWithdrawModal: React.FC<{
                     <div className='w-full h-4' />
 
                     <button
-                        className='w-full bg-green-500 text-white h-10 rounded-xl'
+                        className={classNames(
+                            'w-full text-white h-10 rounded-xl',
+                            depositWithdraw === 'Deposit' ? 'bg-green-500' : 'bg-red-500',
+                        )}
                         onClick={close}
                     >
                         {depositWithdraw}
                     </button>
                 </div>
-            </ParetoModal>
+            </ParetoModal >
         )
     }

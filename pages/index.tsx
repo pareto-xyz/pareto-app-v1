@@ -14,7 +14,9 @@ const Home: NextPage = () => {
 
     return (
         <ParetoContainer>
-            <div className='w-full h-full flex flex-wrap justify-center items-center text-9xl font-bold'>
+            <div className='w-full h-full flex flex-wrap justify-center items-center text-9xl font-bold -z-10'>
+                <br />
+                <br />
                 <div className='w-full flex justify-center items-center mb-16'>
                     Welcome
                 </div>

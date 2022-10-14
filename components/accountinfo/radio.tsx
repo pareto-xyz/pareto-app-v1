@@ -10,10 +10,10 @@ export const PositionsRadio: React.FC<{
     setSelected,
 }) => {
         return (
-            <GreenContainer className=''>
+            <GreenContainer className='w-5/6 md:w-fit'>
                 <GreenSelectButton
                     selected={selected === 'Positions'}
-                    className='w-[8rem] h-[2.25rem]'
+                    className='md:w-[8rem] w-[5rem] h-[2.25rem]'
                     onClick={() => {
                         setSelected('Positions')
                     }}
@@ -22,7 +22,7 @@ export const PositionsRadio: React.FC<{
                 </GreenSelectButton>
                 <GreenSelectButton
                     selected={selected === 'Trade History'}
-                    className='w-[10rem] h-[2.25rem]'
+                    className='md:w-[10rem] w-[7rem] h-[2.25rem]'
                     onClick={() => {
                         setSelected('Trade History')
                     }}
@@ -31,7 +31,7 @@ export const PositionsRadio: React.FC<{
                 </GreenSelectButton>
                 <GreenSelectButton
                     selected={selected === 'Settlement History'}
-                    className='w-[12rem] h-[2.25rem]'
+                    className='md:w-[12rem] w-[9rem] h-[2.25rem]'
                     onClick={() => {
                         setSelected('Settlement History')
                     }}
