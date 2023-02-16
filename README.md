@@ -7,3 +7,10 @@ React app for an order book frontend. Part of the series detailed in this [white
 ## Usage
 
 Run `yarn` to install dependencies. Run `npx next build` to build the application. Run `npx next start` to start it. 
+
+## Screenshots
+
+[Home Page](./assets/home.png)
+
+[Table Page](./assets/table.png)
+
