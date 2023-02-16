@@ -1,4 +1,4 @@
-Pareto Order Book Frontend App 
+# Pareto Order Book Frontend App 
 
 **[Disclaimer This repository is no longer maintained and is meant for primarily educational purposes.]**
 
