@@ -10,7 +10,7 @@ Run `yarn` to install dependencies. Run `npx next build` to build the applicatio
 
 ## Screenshots
 
-[Home Page](./assets/home.png)
+![Home Page](./assets/home.png)
 
-[Table Page](./assets/table.png)
+![Table Page](./assets/table.png)
 
